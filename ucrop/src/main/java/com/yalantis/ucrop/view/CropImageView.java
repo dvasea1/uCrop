@@ -271,6 +271,19 @@ public class CropImageView extends TransformImageView {
      * Scale value must be calculated only if image won't fill the crop bounds after it's translated to the
      * crop bounds rectangle center. Using temporary variables this method checks this case.
      */
+
+    public void reset() {
+        final Drawable drawable = getDrawable();
+        if (drawable == null) {
+            return;
+        }
+
+        float drawableWidth = drawable.getIntrinsicWidth();
+        float drawableHeight = drawable.getIntrinsicHeight();
+
+        setupInitialImagePosition(drawableWidth, drawableHeight);
+    }
+
     public void setImageToWrapCropBounds(boolean animate) {
         if (mBitmapLaidOut && !isImageWrapCropBounds()) {
 

@@ -445,6 +445,7 @@ public class UCropActivity extends AppCompatActivity {
         AspectRatioTextView aspectRatioTextView;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT);
         lp.weight = 1;
+        int i = 0;
         for (AspectRatio aspectRatio : aspectRatioList) {
             wrapperAspectRatio = (FrameLayout) getLayoutInflater().inflate(R.layout.ucrop_aspect_ratio, null);
             wrapperAspectRatio.setLayoutParams(lp);
@@ -453,7 +454,9 @@ public class UCropActivity extends AppCompatActivity {
             aspectRatioTextView.setAspectRatio(aspectRatio);
 
             wrapperAspectRatioList.addView(wrapperAspectRatio);
+            wrapperAspectRatio.setTag(i);
             mCropAspectRatioViews.add(wrapperAspectRatio);
+            i++;
         }
 
         mCropAspectRatioViews.get(aspectRationSelectedByDefault).setSelected(true);
@@ -462,14 +465,18 @@ public class UCropActivity extends AppCompatActivity {
             cropAspectRatioView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mGestureCropImageView.setTargetAspectRatio(
-                            ((AspectRatioTextView) ((ViewGroup) v).getChildAt(0)).getAspectRatio(v.isSelected()));
-                    mGestureCropImageView.setImageToWrapCropBounds();
-                    if (!v.isSelected()) {
-                        for (ViewGroup cropAspectRatioView : mCropAspectRatioViews) {
-                            cropAspectRatioView.setSelected(cropAspectRatioView == v);
+                        mGestureCropImageView.setTargetAspectRatio(
+                                ((AspectRatioTextView) ((ViewGroup) v).getChildAt(0)).getAspectRatio(v.isSelected()));
+                        mGestureCropImageView.setImageToWrapCropBounds();
+                        if (!v.isSelected()) {
+                            for (ViewGroup cropAspectRatioView : mCropAspectRatioViews) {
+                                cropAspectRatioView.setSelected(cropAspectRatioView == v);
+                            }
                         }
+                    if(v.getTag().equals(2) ) {
+                        mGestureCropImageView.reset();
                     }
+
                 }
             });
         }

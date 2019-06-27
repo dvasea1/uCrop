@@ -50,7 +50,20 @@
         android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal">
+        <!--<LinearLayout
+            android:id="@+id/state_reset"
+            style="@style/ucrop_WrapperIconState">
 
+            <ImageView
+                android:visibility="gone"
+                style="@style/ucrop_ImageViewWidgetIcon"
+                app:srcCompat="@drawable/ucrop_scale" />
+
+            <TextView
+                style="@style/ucrop_TextViewWidget"
+                android:text="@string/ucrop_reset" />
+
+        </LinearLayout>-->
         <LinearLayout
             android:id="@+id/state_aspect_ratio"
             style="@style/ucrop_WrapperIconState">
